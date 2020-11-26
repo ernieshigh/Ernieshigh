@@ -23,7 +23,7 @@
 			endwhile;
 			
 		?>
-				
+				<?php wp_link_pages(); ?>
 	</main>
 		
 		

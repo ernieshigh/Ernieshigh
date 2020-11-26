@@ -9,7 +9,7 @@
 				</div> <!-- end foot content-->
 				<div id="foot-text" class="row">
 					<div id="middle-foot">
-						<p class="foot-text">'Basic High' a "High" WordPress theme by Ernie. <br><span class="high-copy">All Rights Reserved.&copy; Copyright 2017</span> </p>
+						<p class="foot-text">'All Rights Reserved.&copy; Copyright 2020</span> </p>
 					</div>
 				</div>
 			</div>

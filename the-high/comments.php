@@ -22,7 +22,7 @@ if ( post_password_required() )
     <?php if ( have_comments() ) : ?>
         <h2 class="comments-title">
             <?php
-                printf( _nx( 'One thought on "%2$s"', '%1$s thoughts on "%2$s"', get_comments_number(), 'comments title', 'pure-tech'),
+                printf( _nx( 'One thought on "%2$s"', '%1$s thoughts on "%2$s"', get_comments_number(), 'comments title', 'the-high'),
                     number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>' );
             ?>
         </h2>
@@ -42,9 +42,9 @@ if ( post_password_required() )
             if ( get_comment_pages_count() > 1 &amp;&amp; get_option( 'page_comments' ) ) :
         ?>
         <nav class="navigation comment-navigation" role="navigation">
-            <h1 class="screen-reader-text section-heading"><?php _e( 'Comment navigation', 'pure-tech'); ?></h1>
-            <div class="nav-previous"><?php previous_comments_link( __( '&amp;larr; Older Comments', 'pure-tech') ); ?></div>
-            <div class="nav-next"><?php next_comments_link( __( 'Newer Comments &amp;rarr;', 'pure-tech') ); ?></div>
+            <h1 class="screen-reader-text section-heading"><?php _e( 'Comment navigation', 'the-high'); ?></h1>
+            <div class="nav-previous"><?php previous_comments_link( __( '&amp;larr; Older Comments', 'the-high') ); ?></div>
+            <div class="nav-next"><?php next_comments_link( __( 'Newer Comments &amp;rarr;', 'the-high') ); ?></div>
         </nav><!-- .comment-navigation -->
         <?php endif; // Check for comment navigation ?>
  

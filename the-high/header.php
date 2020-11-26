@@ -13,7 +13,7 @@
 	</head>
 	
 	<body <?php body_class(); ?>>
-		
+		 <?php wp_body_open(); ?>
 		<header class="main-head">
 			<div class="container head-container">
 				
@@ -45,7 +45,7 @@
 				  <div class="container nav-container">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<button class="navbar-toggler" onclick="menuToggle()">
-						<span class="navbar-toggler-icon"><?php echo file_get_contents( get_stylesheet_directory_uri() . '/assets/images/responsive-menu.svg' ); ?></span>
+						<span class="navbar-toggler-icon"><?php  echo high_display_svg(); ?></span>
 					</button>
  
 						<?php  
@@ -55,13 +55,13 @@
 								'container'       => 'div',
 								'container_class' => 'collapse navbar-collapse',
 								'menu_class'      => 'nav-menu',
-								'walker' 		  =>  new High_Nav_Walker(),
 								'fallback_cb'    => true
 							) );
 						 ?>
 					</div>
 				</nav><!-- Navigation -->
 				
+		
 			</div>
 		</header>
 		

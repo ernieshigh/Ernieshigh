@@ -1,22 +1,19 @@
 <?php
 
-
-// include needed files  dropdown menu, customizer ...
-include( get_stylesheet_directory() . '/inc/high-customizer.php' );
-
-
-// add custom walker for dropdown menu 
-include( get_stylesheet_directory() . '/inc/class-high-nav-walker.php' );
-// add fields in menu editor
-include( get_stylesheet_directory() . '/inc/high-mega-field.php' );
-
-include_once (get_stylesheet_directory() . '/inc/high-edit-custom-walker.php' );
-
 // Setup basic-high Theme
+
+
+if ( ! function_exists( 'wp_body_open' ) ) {
+    function wp_body_open() {
+        do_action( 'wp_body_open' );
+    }
+}
+
 add_action( 'after_setup_theme', 'high_name_setup' );
 function high_name_setup() {
+	
 	// theme text domain
-		load_theme_textdomain('pure-tech', get_template_directory() . '/languages');
+		load_theme_textdomain('the-high', get_template_directory() . '/languages');
 		
 	//add post format
 		add_theme_support( 'post-formats');
@@ -46,6 +43,11 @@ function high_name_setup() {
 		
 	// add editor styles 
 		add_editor_style();
+		add_theme_support( 'wp-block-styles' );
+		add_theme_support( 'editor-color-palette' );
+	
+	/// add full width to gutenberg
+	add_theme_support( 'align-wide' );
 		
 	// set content width
 	if ( ! isset( $content_width ) ) $content_width = 1280;
@@ -88,9 +90,6 @@ function high_name_setup() {
 			endif;
 		}
 	}
-	
-	/// add full width to gutenberg
-	add_theme_support( 'align-wide' );
 		
 }
 
@@ -119,13 +118,34 @@ function high_display_logo() {
 
 }
 
- function basic_high_register_menus(){
-        register_nav_menus( array(
-            'primary_menu' => __( 'Primary Menu', 'the-high' ),
-            'footer_menu'  => __( 'Footer Menu', 'the-high' ),
-        ) );
-    }
-    add_action( 'after_setup_theme', 'basic_high_register_menus', 0 );
+add_action( 'after_setup_theme', 'basic_high_register_menus', 0 );
+function basic_high_register_menus(){
+	register_nav_menus( array(
+		'primary_menu' => __( 'Primary Menu', 'the-high' ),
+		'footer_menu'  => __( 'Footer Menu', 'the-high' ),
+	) );
+}
+	
+// add svg file
+function high_display_svg() {
+		global $wp_filesystem;
+
+	// Make sure that the above variable is properly setup.
+		require_once ABSPATH . 'wp-admin/includes/file.php';
+		WP_Filesystem();
+		
+		// Check whether a file/directory exists.
+		$exists = $wp_filesystem->exists(get_stylesheet_directory() . '/assets/images/responsive-menu.svg');
+		//var_dump( $exists );
+
+		// Get file content.
+		$menu_icon = $wp_filesystem->get_contents(get_stylesheet_directory() . '/assets/images/responsive-menu.svg');
+		return $menu_icon;
+
+}
+	
+	
+	
 // enqueue add custom scripts and styles if needed
 add_action('wp_enqueue_scripts', 'high_scripts');
 function high_scripts() {

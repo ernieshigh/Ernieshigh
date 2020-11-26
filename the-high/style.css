@@ -2,9 +2,12 @@
 	Theme Name: The-High
 	Theme URI: https://github.com/ernieshigh/basic-high.git
 	Author: ernie
-	Author URI: http://ernieshigh.com/
+	Author URI: http://ernieshigh.dev/
 	Description: A plain no extras theme framework
-	Version: 0.0.1
+	Version: 0.0.1	
+	Requires at least: 5.0	
+	Tested up to: 5.4	
+	Requires PHP: 7.0
 	License: GNU General Public License v2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	Text Domain: 'The-high'
@@ -622,10 +625,23 @@ h3{
 }
 
 
+
+
+h1.front-head {
+    margin-top: 10vw;
+    color: #fff;
+    font-size: 4em;
+    text-align: center;
+    text-shadow: 2px 1px rgba(30, 107, 109, .5);
+}
+
+
 .site-title a,
 .site-description{color: #1e6b6d;}
 .site-description{margin-top: .5em;}
 
+
+.home .site-branding h1.site-title a{color: #fff}
 .blog-title,
 .cat-title{
 	width: 100%;
@@ -705,7 +721,7 @@ a.read-more {
 
 p.foot-text {
 	color: #1e6b6d;
-    font-size: 85%;
+    font-size: 12px;
 }
 
 
