@@ -13,10 +13,10 @@ global $post;
 
 <?php get_header(); ?>
 	
-	<main id="page-<?php echo $post->ID; ?>">
+	<main>
 	
 		<?php get_template_part( 'templates/content', 'content'); ?>
 		
 	</main>
 	
-<?php get_footer(); ?>
+<?php get_footer();

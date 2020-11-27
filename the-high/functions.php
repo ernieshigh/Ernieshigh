@@ -150,8 +150,15 @@ function high_display_svg() {
 add_action('wp_enqueue_scripts', 'high_scripts');
 function high_scripts() {
 	// styles
+	wp_enqueue_style('parallax', get_stylesheet_directory_uri() . '/assets/css/parallax-style.css');
 	wp_enqueue_style('font-awesome', get_stylesheet_directory_uri() . '/assets/css/all.min.css');
 	wp_enqueue_style( 'high-style', get_stylesheet_uri() );
+	
+	
+	wp_enqueue_script('jquery') ;
+	wp_enqueue_script('para','https://cdnjs.cloudflare.com/ajax/libs/jquery-parallax/1.1.3/jquery-parallax-min.js', array());
+	wp_enqueue_script( 'parallax', get_stylesheet_directory_uri() . '/assets/js/parallax-script.js', array(jquery) );
+
 		
 	
 }
