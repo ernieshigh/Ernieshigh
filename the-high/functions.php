@@ -2,6 +2,9 @@
 
 // Setup basic-high Theme
 
+include get_theme_file_path('/inc/high-walker.php');
+include get_theme_file_path('/inc/high-functions.php');
+
 
 if ( ! function_exists( 'wp_body_open' ) ) {
     function wp_body_open() {
@@ -16,7 +19,7 @@ function high_name_setup() {
 		load_theme_textdomain('the-high', get_template_directory() . '/languages');
 		
 	//add post format
-		add_theme_support( 'post-formats');
+		add_theme_support( 'post-formats',array( 'aside', 'gallery',) );
 		
 	//adds title in head
 		add_theme_support( "title-tag" );
@@ -32,15 +35,7 @@ function high_name_setup() {
 		
 	//register  menu option
 		add_action( 'init', 'basic_high_register_menus' );
-		
-	//add logo 
-		add_theme_support( 'custom-logo', array(
-			'height'      => 150,
-			'width'       => 400,
-			'flex-width' => true,
-			'flex-height' => true,
-		) );
-		
+	
 	// add editor styles 
 		add_editor_style();
 		add_theme_support( 'wp-block-styles' );
@@ -101,22 +96,20 @@ function theme_body_classes( $classes ) {
 	return $classes;
 }
 
-	
 // display logo 
-add_action( 'high_add_logo', 'high_display_logo' );
+add_action( 'after_setup_theme', 'high_display_logo' );
 function high_display_logo() {
-	$custom_logo_id = get_theme_mod( 'custom_logo' );
-	$image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
-	$image_alt = get_post_meta( $custom_logo_id, '_wp_attachment_image_alt', true );
-	$title = get_bloginfo( 'name' ); 
-		if($image){
-			echo '<div id="highLogo">';
-			echo '<a href="' . esc_url(home_url()) . '" rel="home">';
-			echo '<img class="high-logo" src="' . $image[0] . '" alt="' . $image_alt . '" title="' . $title . '">';
-			echo '</a></div>';
-		}
+	  $defaults = array(
+			'height'      => 75,
+			'width'       => 75,
+		'flex-height' => true,
+		'flex-width'  => true,
+		'header-text' => array( 'site-title', 'site-description' ),
+	);
+	add_theme_support( 'custom-logo', $defaults );
 
 }
+
 
 add_action( 'after_setup_theme', 'basic_high_register_menus', 0 );
 function basic_high_register_menus(){
@@ -154,10 +147,9 @@ function high_scripts() {
 	wp_enqueue_style('font-awesome', get_stylesheet_directory_uri() . '/assets/css/all.min.css');
 	wp_enqueue_style( 'high-style', get_stylesheet_uri() );
 	
-	
-	wp_enqueue_script('jquery') ;
-	wp_enqueue_script('para','https://cdnjs.cloudflare.com/ajax/libs/jquery-parallax/1.1.3/jquery-parallax-min.js', array());
-	wp_enqueue_script( 'parallax', get_stylesheet_directory_uri() . '/assets/js/parallax-script.js', array(jquery) );
+	wp_enqueue_script('jquery');
+	//wp_enqueue_script('para','https://cdnjs.cloudflare.com/ajax/libs/jquery-parallax/1.1.3/jquery-parallax-min.js', array());
+	wp_enqueue_script( 'parallax', get_stylesheet_directory_uri() . '/assets/js/parallax-script.js', array('jquery') );
 
 		
 	

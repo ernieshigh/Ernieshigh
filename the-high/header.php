@@ -16,52 +16,57 @@
 		 <?php wp_body_open(); ?>
 		<header class="main-head">
 			<div class="container head-container">
-				
-				<div class="site-branding">
-				<?php  do_action( 'high_add_logo', 10, 2 );?>
-				
-				<?php	if(is_front_page()): ?>
-				
-					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				
-				<?php else: ?>
-					
-					<h2 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h2>
-				
-				<?php	endif; ?>
-				
-				<?php
-					$description = get_bloginfo( 'description', 'display' );
-					if ( $description || is_customize_preview() ) :
-					
-						echo '<p class="site-description">' . $description . '</p>';
-					
-					endif; 
-				?>
+				<div class="row head-row">
+						<div class="site-branding">
 						
-				</div>
-								
-				<nav class="navbar" role="navigation">
-				  <div class="container nav-container">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<button class="navbar-toggler" onclick="menuToggle()">
-						<span class="navbar-toggler-icon"><?php  echo high_display_svg(); ?></span>
-					</button>
- 
-						<?php  
-							wp_nav_menu( array(
-								'theme_location'  => 'primary_menu',
-								'depth'	          => 2,
-								'container'       => 'div',
-								'container_class' => 'collapse navbar-collapse',
-								'menu_class'      => 'nav-menu',
-								'fallback_cb'    => true
-							) );
-						 ?>
-					</div>
-				</nav><!-- Navigation -->
+							
+						
+							<?php  if ( function_exists( 'the_custom_logo' ) ) {the_custom_logo();} ?>
+						
+						</div>
+										
+						<nav class="navbar" role="navigation">
+						
+							<!-- css mobile menu breakpoint 920-->
+							<div class="navbar-toggler">
+								<input type="checkbox" />
+								<span></span>
+								<span></span>
+								<span></span>
+		 
+								<?php  
+									wp_nav_menu( array(
+										'theme_location'  => 'primary_menu',
+										'depth'	          => 8,
+										'container'       => '',
+										'container_class' => '',
+										'menu_class'      => 'nav-menu',
+										'walker'         => new High_Walker_Nav(),
+										'fallback_cb'    => true
+									) );
+								 ?>
+								 
+								 </div>
+							
+								<?php  
+									// standard deskktop menu 
+									wp_nav_menu( array(
+										'theme_location'  => 'primary_menu',
+										'depth'	          => 8,
+										'container'       => 'div',
+										'container_class' => 'hide-mobile',
+										'menu_class'      => 'nav-menu',
+										'walker'         => new High_Walker_Nav(),
+										'fallback_cb'    => true
+									) );
+								 ?>
+							
+						</nav><!-- Navigation -->
+					
+					<?php echo get_search_form(); ?>
+					
 				
+				</div>
 		
 			</div>
 		</header>
-		

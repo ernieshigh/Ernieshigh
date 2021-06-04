@@ -8,3 +8,6 @@ Version: 0.0.1
 
 Version: 0.1.1
 *** add theme support for Gutenberg
+
+Version 0.1.2
+*** Add responsive hamburger menu no-js
